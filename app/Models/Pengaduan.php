@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pengaduan extends Model
 {
@@ -36,6 +37,14 @@ class Pengaduan extends Model
     public function pengaduanStatus()
     {
         return $this->belongsTo(PengaduanStatus::class);
+    }
+
+    // PENGATURAN UNTUK PENGADUAN (IMAGE)
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($image) => asset('/storage/pengaduans/' . $image),
+        );
     }
 
 
