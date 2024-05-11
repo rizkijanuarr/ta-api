@@ -39,6 +39,14 @@ class Pengaduan extends Model
         return $this->belongsTo(PengaduanStatus::class);
     }
 
+    // RELASI
+    // Tujuan : agar kita bisa memanggil data induknya
+    // (pengaduan_counts) => (pengaduan)
+    public function pengaduanCounts()
+    {
+        return $this->belongsTo(PengaduanCounts::class);
+    }
+
     // PENGATURAN UNTUK PENGADUAN (IMAGE)
     protected function image(): Attribute
     {
