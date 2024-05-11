@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionsTableSeeder extends Seeder
 {
@@ -28,24 +27,16 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'users.delete', 'guard_name' => 'api']);
 
         // PERMISSION PENGADUAN CATEGORY
-        $permission = Permission::create(['name' => 'pengaduan.categories.index', 'guard_name' => 'api']);
-        $permission->alias('categories.index');
-        $permission = Permission::create(['name' => 'pengaduan.categories.create', 'guard_name' => 'api']);
-        $permission->alias('categories.create');
-        $permission = Permission::create(['name' => 'pengaduan.categories.edit', 'guard_name' => 'api']);
-        $permission->alias('categories.edit');
-        $permission = Permission::create(['name' => 'pengaduan.categories.delete', 'guard_name' => 'api']);
-        $permission->alias('categories.delete');
+        Permission::create(['name' => 'pengaduan.categories.index', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.categories.create', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.categories.edit', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.categories.delete', 'guard_name' => 'api']);
 
         // PERMISSION PENGADUAN STATUS
-        $permission = Permission::create(['name' => 'pengaduan.statuses.index', 'guard_name' => 'api']);
-        $permission->alias('statuses.index');
-        $permission = Permission::create(['name' => 'pengaduan.statuses.create', 'guard_name' => 'api']);
-        $permission->alias('statuses.create');
-        $permission = Permission::create(['name' => 'pengaduan.statuses.edit', 'guard_name' => 'api']);
-        $permission->alias('statuses.edit');
-        $permission = Permission::create(['name' => 'pengaduan.statuses.delete', 'guard_name' => 'api']);
-        $permission->alias('statuses.delete');
+        Permission::create(['name' => 'pengaduan.statuses.index', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.statuses.create', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.statuses.edit', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.statuses.delete', 'guard_name' => 'api']);
 
         // PERMISSION PENGADUAN
         Permission::create(['name' => 'pengaduan.index', 'guard_name' => 'api']);
@@ -54,14 +45,10 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'pengaduan.delete', 'guard_name' => 'api']);
 
         // PERMISSION STATUS TANGGAPAN
-        $permission = Permission::create(['name' => 'tanggapan.statuses.index', 'guard_name' => 'api']);
-        $permission->alias('statuses.index');
-        $permission = Permission::create(['name' => 'tanggapan.statuses.create', 'guard_name' => 'api']);
-        $permission->alias('statuses.create');
-        $permission = Permission::create(['name' => 'tanggapan.statuses.edit', 'guard_name' => 'api']);
-        $permission->alias('statuses.edit');
-        $permission = Permission::create(['name' => 'tanggapan.statuses.delete', 'guard_name' => 'api']);
-        $permission->alias('statuses.delete');
+        Permission::create(['name' => 'tanggapan.statuses.index', 'guard_name' => 'api']);
+        Permission::create(['name' => 'tanggapan.statuses.create', 'guard_name' => 'api']);
+        Permission::create(['name' => 'tanggapan.statuses.edit', 'guard_name' => 'api']);
+        Permission::create(['name' => 'tanggapan.statuses.delete', 'guard_name' => 'api']);
 
         // PERMISSION TANGGAPAN
         Permission::create(['name' => 'tanggapan.index', 'guard_name' => 'api']);
