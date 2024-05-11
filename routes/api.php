@@ -36,6 +36,14 @@ Route::prefix('admin')->group(function () {
 
         // DASHBOARD
         Route::get('/dashboard', App\Http\Controllers\Api\Admin\DashboardController::class);
+
+        // PERMISSIONS INDEX
+        Route::get('/permissions', [\App\Http\Controllers\Api\Admin\PermissionController::class, 'index'])
+        ->middleware('permission:permissions.index');
+
+        // PERMISSIONS ALL
+        Route::get('/permissions/all', [\App\Http\Controllers\Api\Admin\PermissionController::class, 'all'])
+        ->middleware('permission:permissions.index');
     });
 
 });
