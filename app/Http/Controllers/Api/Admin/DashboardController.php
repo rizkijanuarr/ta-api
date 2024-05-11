@@ -68,7 +68,7 @@ class DashboardController extends Controller
                 'categories' => $pengaduanCategories,
                 'pengaduan'  => $pengaduan,
                 'tanggapan'  => $tanggapan,
-                'status'     => $pengaduanStatus,
+                'pengaduan_status' => $pengaduanStatus,
                 'tanggapan_status' => $tanggapanStatus,
                 'sliders'    => $sliders,
                 'users'      => $users,
