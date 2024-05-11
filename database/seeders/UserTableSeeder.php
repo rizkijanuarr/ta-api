@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
         // Membuat data pengguna (user)
         User::create([
             'name'      => 'Admin Tampan',
+            'no_induk'  => '123456',
             'email'     => 'admintampan@gmail.com',
             'password'  => bcrypt('rahasia123')
         ]);
