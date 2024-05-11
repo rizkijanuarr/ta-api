@@ -13,4 +13,11 @@ class StatusTanggapan extends Model
     protected $fillable = [
         'name', 'slug'
     ];
+
+    // RELASI
+    // Tujuan : satu data status bisa memiliki banyak data tanggapan
+    public function statusTanggapan()
+    {
+        return $this->hasMany(Tanggapan::class);
+    }
 }

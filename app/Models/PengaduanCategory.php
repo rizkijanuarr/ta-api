@@ -13,4 +13,11 @@ class PengaduanCategory extends Model
     protected $fillable = [
         'name', 'slug', 'image'
     ];
+
+    // RELASI
+    // Tujuan : satu data pengaduan_category bisa memiliki banyak data pengaduan
+    public function pengaduan()
+    {
+        return $this->hasMany(Pengaduan::class);
+    }
 }
