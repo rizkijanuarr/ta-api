@@ -12,7 +12,7 @@ class Tanggapan extends Model
 
     // TANGGAPAN
     protected $fillable = [
-        'pengaduan_id', 'tanggapan_status_id', 'user_id', 'description', 'image', 'slug'
+        'pengaduan_id', 'pengaduan_status_id', 'user_id', 'description', 'image', 'slug'
     ];
 
     // RELASI
@@ -26,9 +26,9 @@ class Tanggapan extends Model
     // RELASI
     // Tujuan : agar kita bisa memanggil data induknya
     // (tanggapan_statuses) => (tanggapan)
-    public function statusTanggapan()
+    public function pengaduanStatus()
     {
-        return $this->belongsTo(StatusTanggapan::class);
+        return $this->belongsTo(PengaduanStatus::class);
     }
 
     // RELASI

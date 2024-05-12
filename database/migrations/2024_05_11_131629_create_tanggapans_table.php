@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('tanggapans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pengaduan_id')->references('id')->on('pengaduans')->cascadeOnDelete();
-            $table->foreignId('tanggapan_status_id')->references('id')->on('status_tanggapans')->cascadeOnDelete();
+            $table->foreignId('pengaduan_status_id')->references('id')->on('pengaduan_statuses')->cascadeOnDelete();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('description');
             $table->string('image');
