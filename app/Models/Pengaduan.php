@@ -15,6 +15,18 @@ class Pengaduan extends Model
         'user_id', 'pengaduan_category_id', 'pengaduan_status_id', 'title', 'description', 'location', 'image', 'slug'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Nilai bawaan
+        static::creating(function ($model) {
+            $model->pengaduan_status_id = 1; // 1 bisa merupakan ID dari status default seperti "Pending"
+        });
+    }
+
+
+
     // RELASI
     // Tujuan : agar kita bisa memanggil data induknya
     // (user) => (pengaduan)
@@ -44,7 +56,7 @@ class Pengaduan extends Model
     // (pengaduan_counts) => (pengaduan)
     public function pengaduanCounts()
     {
-        return $this->belongsTo(PengaduanCounts::class);
+        return $this->hasMany(PengaduanCounts::class);
     }
 
     // PENGATURAN UNTUK PENGADUAN (IMAGE)

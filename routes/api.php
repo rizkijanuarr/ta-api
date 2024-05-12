@@ -73,6 +73,10 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/pengaduan/status', App\Http\Controllers\Api\Admin\PengaduanStatusController::class)
         ->middleware('permission:pengaduan.statuses.index|pengaduan.statuses.store|pengaduan.statuses.update|pengaduan.statuses.delete');
 
+        // PENGADUAN
+        Route::apiResource('/pengaduan', App\Http\Controllers\Api\Admin\PengaduanController::class)
+        ->middleware('permission:pengaduan.index|pengaduan.store|pengaduan.update|pengaduan.delete');
+
 
     });
 
