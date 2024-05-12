@@ -65,6 +65,13 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/pengaduan/categories', App\Http\Controllers\Api\Admin\PengaduanCategoryController::class)
         ->middleware('permission:pengaduan.categories.index|pengaduan.categories.store|pengaduan.categories.update|pengaduan.categories.delete');
 
+        // PENGADUAN STATUS ALL
+        Route::get('/pengaduan/status/all', [\App\Http\Controllers\Api\Admin\PengaduanStatusController::class, 'all'])
+        ->middleware('permission:pengaduan.statuses.index');
+
+        // PENGADUAN STATUS
+        Route::apiResource('/pengaduan/status', App\Http\Controllers\Api\Admin\PengaduanStatusController::class)
+        ->middleware('permission:pengaduan.statuses.index|pengaduan.statuses.store|pengaduan.statuses.update|pengaduan.statuses.delete');
 
 
     });
