@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\PengaduanStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\PengaduanStatusResource;
+use App\Http\Resources\Resource;
 
 class PengaduanStatusController extends Controller
 {
@@ -23,7 +23,7 @@ class PengaduanStatusController extends Controller
         $status->appends(['search' => request()->search]);
 
 
-        return new PengaduanStatusResource(true, 'List Pengaduan Status', $status);
+        return new Resource(true, 'List Pengaduan Status', $status);
     }
 
     // STORE
@@ -45,10 +45,10 @@ class PengaduanStatusController extends Controller
 
         if($status) {
 
-            return new PengaduanStatusResource(true, 'Pengaduan Status Berhasil Disimpan!', $status);
+            return new Resource(true, 'Pengaduan Status Berhasil Disimpan!', $status);
         }
 
-        return new PengaduanStatusResource(false, 'Pengaduan Status Gagal Disimpan!', null);
+        return new Resource(false, 'Pengaduan Status Gagal Disimpan!', null);
     }
 
     // SHOW
@@ -58,10 +58,10 @@ class PengaduanStatusController extends Controller
 
         if($status) {
 
-            return new PengaduanStatusResource(true, 'Detail Pengaduan Status!', $status);
+            return new Resource(true, 'Detail Pengaduan Status!', $status);
         }
 
-        return new PengaduanStatusResource(false, 'Detail Pengaduan Status Tidak DItemukan!', null);
+        return new Resource(false, 'Detail Pengaduan Status Tidak DItemukan!', null);
     }
 
     // UPDATE
@@ -85,11 +85,11 @@ class PengaduanStatusController extends Controller
 
         if ($status->wasChanged()) {
 
-            return new PengaduanStatusResource(true, 'Pengaduan Status Berhasil Diupdate!', $status);
+            return new Resource(true, 'Pengaduan Status Berhasil Diupdate!', $status);
         }
 
 
-        return new PengaduanStatusResource(false, 'Pengaduan Status Gagal Diupdate!', null);
+        return new Resource(false, 'Pengaduan Status Gagal Diupdate!', null);
     }
 
 
@@ -99,11 +99,11 @@ class PengaduanStatusController extends Controller
 
         if($status->delete()) {
 
-            return new PengaduanStatusResource(true, 'Pengaduan Status Berhasil Dihapus!', null);
+            return new Resource(true, 'Pengaduan Status Berhasil Dihapus!', null);
         }
 
 
-        return new PengaduanStatusResource(false, 'Pengaduan Status Gagal Dihapus!', null);
+        return new Resource(false, 'Pengaduan Status Gagal Dihapus!', null);
     }
 
     // ALL
@@ -113,6 +113,6 @@ class PengaduanStatusController extends Controller
         $status = PengaduanStatus::latest()->get();
 
 
-        return new PengaduanStatusResource(true, 'List Data Status', $status);
+        return new Resource(true, 'List Data Status', $status);
     }
 }

@@ -4,9 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PengaduanStatusResource extends JsonResource
+class Resource extends JsonResource
 {
-    // PENGADUAN STATUS RESOURCES
+    // RESOURCES
 
     public $status;
     public $message;
@@ -27,4 +27,5 @@ class PengaduanStatusResource extends JsonResource
             'data'      => $this->resource
         ];
     }
+
 }

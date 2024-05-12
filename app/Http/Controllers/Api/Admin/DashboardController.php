@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Api\Admin;
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Slider;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use Illuminate\Http\Request;
 use App\Models\PengaduanCounts;
 use App\Models\PengaduanStatus;
-use App\Models\StatusTanggapan;
 use App\Models\PengaduanCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -26,11 +24,7 @@ class DashboardController extends Controller
         $pengaduan = Pengaduan::count();
 
         // TANGGAPAN
-        $tanggapanStatus = StatusTanggapan::count();
         $tanggapan = Tanggapan::count();
-
-        // SLIDERS
-        $sliders = Slider::count();
 
         // USERS
         $users = User::count();
@@ -69,8 +63,6 @@ class DashboardController extends Controller
                 'pengaduan'  => $pengaduan,
                 'tanggapan'  => $tanggapan,
                 'pengaduan_status' => $pengaduanStatus,
-                'tanggapan_status' => $tanggapanStatus,
-                'sliders'    => $sliders,
                 'users'      => $users,
                 'pengaduan_counts' => [
                     'count' => $count,

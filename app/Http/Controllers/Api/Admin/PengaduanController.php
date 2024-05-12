@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PengaduanResource;
+use App\Http\Resources\Resource;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +23,7 @@ class PengaduanController extends Controller
         $pengaduan->appends(['search' => request()->search]);
 
 
-        return new PengaduanResource(true, 'List Data Pengaduan', $pengaduan);
+        return new Resource(true, 'List Data Pengaduan', $pengaduan);
     }
 
     // POST
@@ -59,10 +59,10 @@ class PengaduanController extends Controller
 
         if($pengaduan) {
 
-            return new PengaduanResource(true, 'Data Pengaduan Berhasil Disimpan!', $pengaduan);
+            return new Resource(true, 'Data Pengaduan Berhasil Disimpan!', $pengaduan);
         }
 
-        return new PengaduanResource(false, 'Data Pengaduan Gagal Disimpan!', null);
+        return new Resource(false, 'Data Pengaduan Gagal Disimpan!', null);
     }
 
 
@@ -73,10 +73,10 @@ class PengaduanController extends Controller
 
         if($pengaduan) {
 
-            return new PengaduanResource(true, 'Detail Data Pengaduan!', $pengaduan);
+            return new Resource(true, 'Detail Data Pengaduan!', $pengaduan);
         }
 
-        return new PengaduanResource(false, 'Detail Data Pengaduan Tidak Ditemukan!', null);
+        return new Resource(false, 'Detail Data Pengaduan Tidak Ditemukan!', null);
     }
 
     // UPDATE
@@ -126,10 +126,10 @@ class PengaduanController extends Controller
 
         if($pengaduan) {
 
-            return new PengaduanResource(true, 'Data Pengaduan Berhasil Diupdate!', $pengaduan);
+            return new Resource(true, 'Data Pengaduan Berhasil Diupdate!', $pengaduan);
         }
 
-        return new PengaduanResource(false, 'Data Pengaduan Gagal Disupdate!', null);
+        return new Resource(false, 'Data Pengaduan Gagal Disupdate!', null);
     }
 
     // DELETE
@@ -140,10 +140,10 @@ class PengaduanController extends Controller
 
         if($pengaduan->delete()) {
 
-            return new PengaduanResource(true, 'Data Pengaduan Berhasil Dihapus!', null);
+            return new Resource(true, 'Data Pengaduan Berhasil Dihapus!', null);
         }
 
-        return new PengaduanResource(false, 'Data Pengaduan Gagal Dihapus!', null);
+        return new Resource(false, 'Data Pengaduan Gagal Dihapus!', null);
     }
 
 }

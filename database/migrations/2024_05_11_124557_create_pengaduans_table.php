@@ -13,7 +13,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('pengaduan_category_id')->references('id')->on('pengaduan_categories')->cascadeOnDelete();
-            $table->foreignId('pengaduan_status_id')->references('id')->on('pengaduan_statuses')->cascadeOnDelete();
+            $table->foreignId('pengaduan_status_id')->default(1)->references('id')->on('pengaduan_statuses')->cascadeOnDelete();
+            $table->foreignId('assigned_to')->nullable()->references('id')->on('users')->cascadeOnDelete();
             $table->string('title');
             $table->string('description');
             $table->string('location');

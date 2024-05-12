@@ -35,6 +35,11 @@ class Pengaduan extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function assignedTo()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     // RELASI
     // Tujuan : agar kita bisa memanggil data induknya
     // (pengaduan_category) => (pengaduan)

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\Resource;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -15,16 +15,16 @@ class UserController extends Controller
     // INDEX
     public function index()
     {
-        //get users
+
         $users = User::when(request()->search, function($users) {
             $users = $users->where('name', 'like', '%'. request()->search . '%');
         })->with('roles')->latest()->paginate(5);
 
-        //append query string to pagination links
+
         $users->appends(['search' => request()->search]);
 
-        //return with Api Resource
-        return new UserResource(true, 'List Data Users', $users);
+
+        return new Resource(true, 'List Data Users', $users);
     }
 
     // STORE
@@ -32,7 +32,9 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
+            'no_hp'    => 'required',
             'no_induk' => 'required',
+            'identify' => 'required',
             'email'    => 'required|unique:users',
             'password' => 'required|confirmed'
         ]);
@@ -41,10 +43,12 @@ class UserController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        //create user
+
         $user = User::create([
             'name'      => $request->name,
+            'no_hp'     => $request->no_hp,
             'no_induk'  => $request->no_induk,
+            'identify'  => $request->identify,
             'email'     => $request->email,
             'password'  => bcrypt($request->password)
         ]);
@@ -53,12 +57,12 @@ class UserController extends Controller
         $user->assignRole($request->roles);
 
         if($user) {
-            //return success with Api Resource
-            return new UserResource(true, 'Data User Berhasil Disimpan!', $user);
+
+            return new Resource(true, 'Data User Berhasil Disimpan!', $user);
         }
 
-        //return failed with Api Resource
-        return new UserResource(false, 'Data User Gagal Disimpan!', null);
+
+        return new Resource(false, 'Data User Gagal Disimpan!', null);
     }
 
     // SHOW
@@ -67,12 +71,12 @@ class UserController extends Controller
         $user = User::with('roles')->whereId($id)->first();
 
         if($user) {
-            //return success with Api Resource
-            return new UserResource(true, 'Detail Data User!', $user);
+
+            return new Resource(true, 'Detail Data User!', $user);
         }
 
-        //return failed with Api Resource
-        return new UserResource(false, 'Detail Data User Tidak DItemukan!', null);
+
+        return new Resource(false, 'Detail Data User Tidak DItemukan!', null);
     }
 
     // UPDATE
@@ -80,7 +84,9 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
+            'no_hp'    => 'required',
             'no_induk' => 'required',
+            'identify' => 'required',
             'email'    => 'required|unique:users,email,'.$user->id,
             'password' => 'confirmed'
         ]);
@@ -91,19 +97,23 @@ class UserController extends Controller
 
         if($request->password == "") {
 
-            //update user without password
+
             $user->update([
                 'name'      => $request->name,
+                'no_hp'     => $request->no_hp,
                 'no_induk'  => $request->no_induk,
+                'identify'  => $request->identify,
                 'email'     => $request->email,
             ]);
 
         } else {
 
-            //update user with new password
+
             $user->update([
                 'name'      => $request->name,
+                'no_hp'     => $request->no_hp,
                 'no_induk'  => $request->no_induk,
+                'identify'  => $request->identify,
                 'email'     => $request->email,
                 'password'  => bcrypt($request->password)
             ]);
@@ -114,24 +124,23 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
 
         if($user) {
-            //return success with Api Resource
-            return new UserResource(true, 'Data User Berhasil Diupdate!', $user);
+
+            return new Resource(true, 'Data User Berhasil Diupdate!', $user);
         }
 
-        //return failed with Api Resource
-        return new UserResource(false, 'Data User Gagal Diupdate!', null);
+
+        return new Resource(false, 'Data User Gagal Diupdate!', null);
     }
 
     // DESTROY
     public function destroy(User $user)
     {
         if($user->delete()) {
-            //return success with Api Resource
-            return new UserResource(true, 'Data User Berhasil Dihapus!', null);
+
+            return new Resource(true, 'Data User Berhasil Dihapus!', null);
         }
 
-        //return failed with Api Resource
-        return new UserResource(false, 'Data User Gagal Dihapus!', null);
+        return new Resource(false, 'Data User Gagal Dihapus!', null);
     }
 
 

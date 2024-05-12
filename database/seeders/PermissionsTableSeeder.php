@@ -44,22 +44,11 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'pengaduan.edit', 'guard_name' => 'api']);
         Permission::create(['name' => 'pengaduan.delete', 'guard_name' => 'api']);
 
-        // PERMISSION STATUS TANGGAPAN
-        Permission::create(['name' => 'tanggapan.statuses.index', 'guard_name' => 'api']);
-        Permission::create(['name' => 'tanggapan.statuses.create', 'guard_name' => 'api']);
-        Permission::create(['name' => 'tanggapan.statuses.edit', 'guard_name' => 'api']);
-        Permission::create(['name' => 'tanggapan.statuses.delete', 'guard_name' => 'api']);
-
         // PERMISSION TANGGAPAN
         Permission::create(['name' => 'tanggapan.index', 'guard_name' => 'api']);
         Permission::create(['name' => 'tanggapan.create', 'guard_name' => 'api']);
         Permission::create(['name' => 'tanggapan.edit', 'guard_name' => 'api']);
         Permission::create(['name' => 'tanggapan.delete', 'guard_name' => 'api']);
-
-        // PERMISSION SLIDERS
-        Permission::create(['name' => 'sliders.index', 'guard_name' => 'api']);
-        Permission::create(['name' => 'sliders.create', 'guard_name' => 'api']);
-        Permission::create(['name' => 'sliders.delete', 'guard_name' => 'api']);
 
     }
 }

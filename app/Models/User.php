@@ -18,6 +18,7 @@ class User extends Authenticatable implements JWTSubject
 
     protected $fillable = [
         'name',
+        'no_hp',
         'no_induk',
         'email',
         'password',
@@ -49,5 +50,17 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if (!empty($user->no_hp)) {
+                // Ubah nomor HP menjadi URL sesuai dengan format yang diinginkan
+                $user->no_hp = 'https://wa.me/62'.$user->no_hp; // Contoh untuk WhatsApp
+            }
+        });
     }
 }

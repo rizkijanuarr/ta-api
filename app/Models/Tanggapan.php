@@ -25,7 +25,7 @@ class Tanggapan extends Model
 
     // RELASI
     // Tujuan : agar kita bisa memanggil data induknya
-    // (tanggapan_statuses) => (tanggapan)
+    // (pengaduan_statuses) => (tanggapan)
     public function pengaduanStatus()
     {
         return $this->belongsTo(PengaduanStatus::class);
