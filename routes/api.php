@@ -57,6 +57,14 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/users', App\Http\Controllers\Api\Admin\UserController::class)
         ->middleware('permission:users.index|users.store|users.update|users.delete');
 
+        // PENGADUAN CATEGORIES ALL
+        Route::get('/pengaduan/categories/all', [\App\Http\Controllers\Api\Admin\PengaduanCategoryController::class, 'all'])
+        ->middleware('permission:pengaduan.categories.index');
+
+        // PENGADUAN CATEGORIES
+        Route::apiResource('/pengaduan/categories', App\Http\Controllers\Api\Admin\PengaduanCategoryController::class)
+        ->middleware('permission:pengaduan.categories.index|pengaduan.categories.store|pengaduan.categories.update|pengaduan.categories.delete');
+
 
 
     });
