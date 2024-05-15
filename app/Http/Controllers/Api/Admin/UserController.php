@@ -31,10 +31,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'users_identifies_id' => 'required',
             'name'     => 'required',
             'no_hp'    => 'required',
             'no_induk' => 'required',
-            'identify' => 'required',
             'email'    => 'required|unique:users',
             'password' => 'required|confirmed'
         ]);
@@ -45,10 +45,10 @@ class UserController extends Controller
 
 
         $user = User::create([
+            'users_identifies_id' => $request->users_identifies_id,
             'name'      => $request->name,
             'no_hp'     => $request->no_hp,
             'no_induk'  => $request->no_induk,
-            'identify'  => $request->identify,
             'email'     => $request->email,
             'password'  => bcrypt($request->password)
         ]);
@@ -83,10 +83,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
+            'users_identifies_id' => 'required',
             'name'     => 'required',
             'no_hp'    => 'required',
             'no_induk' => 'required',
-            'identify' => 'required',
             'email'    => 'required|unique:users,email,'.$user->id,
             'password' => 'confirmed'
         ]);
@@ -99,10 +99,10 @@ class UserController extends Controller
 
 
             $user->update([
+                'users_identifies_id' => $request->users_identifies_id,
                 'name'      => $request->name,
                 'no_hp'     => $request->no_hp,
                 'no_induk'  => $request->no_induk,
-                'identify'  => $request->identify,
                 'email'     => $request->email,
             ]);
 
@@ -110,10 +110,10 @@ class UserController extends Controller
 
 
             $user->update([
+                'users_identifies_id' => $request->users_identifies_id,
                 'name'      => $request->name,
                 'no_hp'     => $request->no_hp,
                 'no_induk'  => $request->no_induk,
-                'identify'  => $request->identify,
                 'email'     => $request->email,
                 'password'  => bcrypt($request->password)
             ]);

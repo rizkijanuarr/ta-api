@@ -53,6 +53,14 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/roles', App\Http\Controllers\Api\Admin\RoleController::class)
         ->middleware('permission:roles.index|roles.store|roles.update|roles.delete');
 
+        // USER IDENTITAS ALL
+        Route::get('/users/identifies/all', [\App\Http\Controllers\Api\Admin\UserIdentifiesController::class, 'all'])
+        ->middleware('permission:users.identifies.index');
+
+        // USER IDENTITAS
+        Route::apiResource('/users/identifies', App\Http\Controllers\Api\Admin\UserIdentifiesController::class)
+        ->middleware('permission:users.identifies.index|users.identifies.store|users.identifies.update|users.identifies.delete');
+
         // USERS
         Route::apiResource('/users', App\Http\Controllers\Api\Admin\UserController::class)
         ->middleware('permission:users.index|users.store|users.update|users.delete');
@@ -76,7 +84,6 @@ Route::prefix('admin')->group(function () {
         // PENGADUAN
         Route::apiResource('/pengaduan', App\Http\Controllers\Api\Admin\PengaduanController::class)
         ->middleware('permission:pengaduan.index|pengaduan.store|pengaduan.update|pengaduan.delete');
-
 
     });
 

@@ -14,13 +14,19 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('pengaduan_category_id')->references('id')->on('pengaduan_categories')->cascadeOnDelete();
             $table->foreignId('pengaduan_status_id')->default(1)->references('id')->on('pengaduan_statuses')->cascadeOnDelete();
-            $table->foreignId('assigned_to')->nullable()->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('users_identifies_id')->references('id')->on('users_identifies')->cascadeOnDelete();
             $table->string('title');
             $table->string('description');
             $table->string('location');
             $table->string('image');
             $table->string('slug')->unique();
             $table->timestamps();
+
+            // Kolom untuk tanggapan
+            $table->text('tanggapan_description')->nullable();
+            $table->string('tanggapan_image')->nullable();
+            // untuk status ikut atas bisa gak?
+            
         });
     }
 

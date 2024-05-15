@@ -20,6 +20,12 @@ class PermissionsTableSeeder extends Seeder
         // PERMISSION FOR PERMISSIONS
         Permission::create(['name' => 'permissions.index', 'guard_name' => 'api']);
 
+        // PERMISSION USER IDENTIFY
+        Permission::create(['name' => 'users.identifies.index', 'guard_name' => 'api']);
+        Permission::create(['name' => 'users.identifies.create', 'guard_name' => 'api']);
+        Permission::create(['name' => 'users.identifies.edit', 'guard_name' => 'api']);
+        Permission::create(['name' => 'users.identifies.delete', 'guard_name' => 'api']);
+
         // PERMISSION USER
         Permission::create(['name' => 'users.index', 'guard_name' => 'api']);
         Permission::create(['name' => 'users.create', 'guard_name' => 'api']);
@@ -43,12 +49,6 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'pengaduan.create', 'guard_name' => 'api']);
         Permission::create(['name' => 'pengaduan.edit', 'guard_name' => 'api']);
         Permission::create(['name' => 'pengaduan.delete', 'guard_name' => 'api']);
-
-        // PERMISSION TANGGAPAN
-        Permission::create(['name' => 'tanggapan.index', 'guard_name' => 'api']);
-        Permission::create(['name' => 'tanggapan.create', 'guard_name' => 'api']);
-        Permission::create(['name' => 'tanggapan.edit', 'guard_name' => 'api']);
-        Permission::create(['name' => 'tanggapan.delete', 'guard_name' => 'api']);
 
     }
 }

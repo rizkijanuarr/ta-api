@@ -12,7 +12,18 @@ class Pengaduan extends Model
 
     // PENGADUAN
     protected $fillable = [
-        'user_id', 'pengaduan_category_id', 'pengaduan_status_id', 'title', 'description', 'location', 'image', 'slug'
+        'user_id',
+        'pengaduan_category_id',
+        'pengaduan_status_id',
+        'users_identifies_id',
+        'title',
+        'description',
+        'location',
+        'image',
+        'slug',
+        'tanggapan_description',
+        'tanggapan_image'
+
     ];
 
     protected static function boot()
@@ -31,11 +42,6 @@ class Pengaduan extends Model
     // Tujuan : agar kita bisa memanggil data induknya
     // (user) => (pengaduan)
     public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function assignedTo()
     {
         return $this->belongsTo(User::class);
     }
@@ -64,11 +70,26 @@ class Pengaduan extends Model
         return $this->hasMany(PengaduanCounts::class);
     }
 
+    // RELASI
+    // Tujuan : agar kita bisa memanggil data induknya
+    // (usersIdentifies) => (pengaduan)
+    public function usersIdentifies()
+    {
+        return $this->belongsTo(UsersIdentify::class);
+    }
+
     // PENGATURAN UNTUK PENGADUAN (IMAGE)
     protected function image(): Attribute
     {
         return Attribute::make(
             get: fn ($image) => asset('/storage/pengaduans/' . $image),
+        );
+    }
+
+    protected function tanggapanImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ? asset('/storage/tanggapan/' . $value) : null,
         );
     }
 
