@@ -82,7 +82,7 @@ class Pengaduan extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => asset('/storage/pengaduans/' . $image),
+            get: fn ($image) => asset('/storage/pengaduan/' . $image),
         );
     }
 
