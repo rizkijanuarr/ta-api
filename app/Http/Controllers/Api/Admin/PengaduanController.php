@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class PengaduanController extends Controller
 {
-    // INDEX
+    // INDEX PUBLIC
     public function index()
     {
-        $pengaduan = Pengaduan::with('user', 'pengaduanCategory')->withCount('pengaduanCounts')->when(request()->search, function($pengaduan) {
+        $pengaduan = Pengaduan::with('user', 'pengaduanCategory', 'pengaduanStatus', 'usersIdentifies')->withCount('pengaduanCounts')->when(request()->search, function($pengaduan) {
             $pengaduan = $pengaduan->where('title', 'like', '%'. request()->search . '%');
         })->latest()->paginate(5);
 
@@ -87,8 +87,8 @@ class PengaduanController extends Controller
             'pengaduan_category_id'     => 'sometimes|required',
             'description'               => 'sometimes|required',
             'location'                  => 'sometimes|required',
-            'tanggapan_description'     => 'sometimes|string',
-            'tanggapan_image'           => 'sometimes|image|mimes:jpeg,jpg,png|max:2000',
+            'tanggapan_description'     => 'sometimes|required|string',
+            'tanggapan_image'           => 'sometimes|required|image|mimes:jpeg,jpg,png|max:2000',
         ]);
 
         if ($validator->fails()) {
@@ -132,7 +132,6 @@ class PengaduanController extends Controller
         }
 
         if ($request->file('tanggapan_image')) {
-            Storage::disk('local')->delete('public/tanggapan' . basename($pengaduan->tanggapan_image));
 
             $tanggapanImage = $request->file('tanggapan_image');
             $tanggapanImage->storeAs('public/tanggapan', $tanggapanImage->hashName());

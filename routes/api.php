@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Route;
 // LOGIN
 Route::post('/login', [App\Http\Controllers\Api\Auth\LoginController::class, 'index']);
 
+// REGISTER
+Route::post('/register', [App\Http\Controllers\Api\Auth\RegisterController::class, 'index']);
+
+
+// ROLE
+Route::get('/role', [App\Http\Controllers\Api\Public\RoleController::class, 'index']);
+
 /*
 |--------------------------------------------------------------------------
 */
@@ -85,6 +92,20 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/pengaduan', App\Http\Controllers\Api\Admin\PengaduanController::class)
         ->middleware('permission:pengaduan.index|pengaduan.store|pengaduan.update|pengaduan.delete');
 
+
+
+
     });
+
+});
+
+// MIDDLEWARE AUTH
+Route::group(['middleware' => 'auth:api'], function() {
+
+
+    Route::get('/pengaduan', [App\Http\Controllers\Api\Public\PengaduanController::class, 'index']);
+    Route::post('/pengaduan', [App\Http\Controllers\Api\Public\PengaduanController::class, 'store']);
+    Route::get('/pengaduan/categories', [App\Http\Controllers\Api\Public\PengaduanCategoryController::class, 'index']);
+    Route::get('/pengaduan/status', [App\Http\Controllers\Api\Public\PengaduanStatusController::class, 'index']);
 
 });

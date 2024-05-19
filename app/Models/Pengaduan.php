@@ -93,5 +93,10 @@ class Pengaduan extends Model
         );
     }
 
+    protected function saveAsExcel($value): string
+    {
+        return $value ? asset('/storage/excel/' . $value) : '';
+    }
+
 
 }

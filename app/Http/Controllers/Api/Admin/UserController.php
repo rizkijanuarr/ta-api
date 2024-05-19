@@ -18,7 +18,7 @@ class UserController extends Controller
 
         $users = User::when(request()->search, function($users) {
             $users = $users->where('name', 'like', '%'. request()->search . '%');
-        })->with('roles')->latest()->paginate(5);
+        })->with('roles', 'usersIdentifies')->latest()->paginate(5);
 
 
         $users->appends(['search' => request()->search]);
@@ -31,12 +31,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'users_identifies_id' => 'required',
-            'name'     => 'required',
-            'no_hp'    => 'required',
-            'no_induk' => 'required',
-            'email'    => 'required|unique:users',
-            'password' => 'required|confirmed'
+            'users_identifies_id' => 'sometimes|required',
+            'name'     => 'sometimes|required',
+            'no_hp'    => 'sometimes|required',
+            'no_induk' => 'sometimes|required',
+            'email'    => 'sometimes|required|unique:users',
+            'password' => 'sometimes|required|confirmed'
         ]);
 
         if ($validator->fails()) {
@@ -83,12 +83,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
-            'users_identifies_id' => 'required',
-            'name'     => 'required',
-            'no_hp'    => 'required',
-            'no_induk' => 'required',
-            'email'    => 'required|unique:users,email,'.$user->id,
-            'password' => 'confirmed'
+            'users_identifies_id' => 'sometimes|required',
+            'name'     => 'sometimes|required',
+            'no_hp'    => 'sometimes|required',
+            'no_induk' => 'sometimes|required',
+            'email'    => 'sometimes|required|unique:users,email,'.$user->id,
+            'password' => 'sometimes|confirmed'
         ]);
 
         if ($validator->fails()) {

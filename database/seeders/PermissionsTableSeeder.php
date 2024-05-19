@@ -50,5 +50,11 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'pengaduan.edit', 'guard_name' => 'api']);
         Permission::create(['name' => 'pengaduan.delete', 'guard_name' => 'api']);
 
+        // BARU 
+        Permission::create(['name' => 'pengaduan.index.all', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.create.all', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.statuses.all', 'guard_name' => 'api']);
+        Permission::create(['name' => 'pengaduan.categories.all', 'guard_name' => 'api']);
+
     }
 }

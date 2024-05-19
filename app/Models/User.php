@@ -64,4 +64,12 @@ class User extends Authenticatable implements JWTSubject
             }
         });
     }
+
+    // RELASI
+    // Tujuan : agar kita bisa memanggil data induknya
+    // (usersIdentifies) => (pengaduan)
+    public function usersIdentifies()
+    {
+        return $this->belongsTo(UsersIdentify::class);
+    }
 }
