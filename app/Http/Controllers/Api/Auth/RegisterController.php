@@ -39,12 +39,22 @@ class RegisterController extends Controller
         //assign roles to user
         $user->assignRole($request->roles);
 
-        if($user) {
-            //return success with Api Resource
-            return new Resource(true, 'Data User Berhasil Disimpan!', $user);
+        $credentials = $request->only('email', 'password');
+
+        if(!$token = auth()->guard('api')->attempt($credentials)) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Email or Password is incorrect'
+            ], 400);
         }
 
-        //return failed with Api Resource
-        return new Resource(false, 'Data User Gagal Disimpan!', null);
+        return response()->json([
+            'success'       => true,
+            'user'          => auth()->guard('api')->user()->only(['name', 'email']),
+            'permissions'   => auth()->guard('api')->user()->getPermissionArray(),
+            'token'         => $token
+        ], 201);
+
     }
 }
